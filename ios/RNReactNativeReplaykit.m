@@ -1,6 +1,7 @@
 
 #import "RNReactNativeReplaykit.h"
 #import <React/RCTLog.h>
+// TODO: For storing the videos in app's documents
 //#define documentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 @implementation RNReactNativeReplaykit
