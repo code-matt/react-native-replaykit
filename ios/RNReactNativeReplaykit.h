@@ -13,6 +13,7 @@
 @property (strong, nonatomic) RPScreenRecorder *screenRecorder;
 @property (strong, nonatomic) AVAssetWriter *assetWriter;
 @property (strong, nonatomic) AVAssetWriterInput *assetWriterInput;
+@property (strong, nonatomic) RPPreviewViewController *previewViewController;
 
 @end
   
