@@ -9,6 +9,17 @@
 
 `$ react-native link react-native-replaykit`
 
+### Usage
+
+```
+import RNRK from 'react-native-replaykit'
+
+RNRK.startRecording() // starts the recording
+
+RNRK.stopRecording() // stops the recording and opens the preview/edit modal
+
+```
+
 ### Manual installation
 
 
