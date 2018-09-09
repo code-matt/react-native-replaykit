@@ -1,5 +1,6 @@
 
 #import "RNReactNativeReplaykit.h"
+#define documentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 @implementation RNReactNativeReplaykit
 
