@@ -6,6 +6,8 @@
 #endif
 
 #import <ReplayKit/ReplayKit.h>
+//#import "RNReactNativeReplaykit-Swift.h"
+//@class ReplayFileUtil;
 
 
 @interface RNReactNativeReplaykit : NSObject <RCTBridgeModule>

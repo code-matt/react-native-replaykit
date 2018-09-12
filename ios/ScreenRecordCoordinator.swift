@@ -8,12 +8,12 @@
 
 import Foundation
 
-class ScreenRecordCoordinator: NSObject
+@objc class ScreenRecordCoordinator: NSObject
 {
     let viewOverlay = WindowUtil()
     let screenRecorder = ScreenRecorder()
     var recordCompleted:((Error?) ->Void)?
-    
+
     override init()
     {
         super.init()
@@ -24,7 +24,7 @@ class ScreenRecordCoordinator: NSObject
         
         
     }
-    
+
     func startRecording(withFileName fileName: String, recordingHandler: @escaping (Error?) -> Void,onCompletion: @escaping (Error?)->Void)
     {
         self.viewOverlay.show()
@@ -33,7 +33,7 @@ class ScreenRecordCoordinator: NSObject
             self.recordCompleted = onCompletion
         }
     }
-    
+
     func stopRecording()
     {
         screenRecorder.stopRecording { (error) in
@@ -41,11 +41,11 @@ class ScreenRecordCoordinator: NSObject
             self.recordCompleted?(error)
         }
     }
-    
+
     class func listAllReplays() -> Array<URL>
     {
         return ReplayFileUtil.fetchAllReplays()
     }
-    
-    
+
+
 }

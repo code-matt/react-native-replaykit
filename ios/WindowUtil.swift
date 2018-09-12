@@ -20,7 +20,7 @@ class WindowUtil: Overlayable
     var overlayWindow = UIWindow(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30))
     var stopButton = UIButton(type: UIButtonType.custom)
     var stopButtonColor = UIColor(red:0.30, green:0.67, blue:0.99, alpha:1.00)
-    var onStopClick:(() -> ())? 
+    var onStopClick:(() -> ())?
     
     init ()
     {
@@ -38,7 +38,7 @@ class WindowUtil: Overlayable
         DispatchQueue.main.async {
             
             UIView.animate(withDuration: 0.3, animations: {
-               self.stopButton.transform = CGAffineTransform(translationX:0, y: -30)
+                self.stopButton.transform = CGAffineTransform(translationX:0, y: -30)
             }, completion: { (animated) in
                 self.overlayWindow.backgroundColor = .clear
                 self.overlayWindow.isHidden = true

@@ -1,10 +1,11 @@
 
 #import "RNReactNativeReplaykit.h"
 #import <React/RCTLog.h>
-// TODO: For storing the videos in app's documents
-//#define documentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+#import "RNReactNativeReplaykit-Swift.h"
 
 @implementation RNReactNativeReplaykit
+
 
 - (dispatch_queue_t)methodQueue
 {
@@ -13,19 +14,18 @@
 
 RCT_EXPORT_METHOD(startRecording)
 {
-    self.screenRecorder = [RPScreenRecorder sharedRecorder];
-    [self.screenRecorder startRecordingWithHandler:^(NSError * _Nullable error) {
-        
-    }];
+    [ReplayFileUtil createReplaysFolder];
+//    [ScreenRecorder start]
+}
+
+RCT_EXPORT_METHOD(getRecordings:(RCTResponseSenderBlock)callback)
+{
+    NSArray *recordings = [ReplayFileUtil fetchAllReplays];
+    callback(@[[NSNull null], recordings]);
 }
 
 RCT_EXPORT_METHOD(stopRecording)
 {
-    [self.screenRecorder stopRecordingWithHandler:^(RPPreviewViewController * _Nullable previewViewController, NSError * _Nullable error) {
-        UIViewController *controller = [UIApplication sharedApplication].keyWindow.rootViewController;
-        self.previewViewController = previewViewController;
-        [controller presentViewController:self.previewViewController animated:true completion:nil];
-    }];
 }
 
 RCT_EXPORT_MODULE()

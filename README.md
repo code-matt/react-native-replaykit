@@ -14,9 +14,7 @@
 ```
 import RNRK from 'react-native-replaykit'
 
-RNRK.startRecording() // starts the recording
-
-RNRK.stopRecording() // stops the recording and opens the preview/edit modal
+RKRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
 
 ```
 
@@ -30,28 +28,9 @@ RNRK.stopRecording() // stops the recording and opens the preview/edit modal
 3. In XCode, in the project navigator, select your project. Add `libRNReactNativeReplaykit.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
-#### Android
+### Manual installation continued (required after manual installation or linking)
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNReactNativeReplaykitPackage;` to the imports at the top of the file
-  - Add `new RNReactNativeReplaykitPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-replaykit'
-  	project(':react-native-replaykit').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-replaykit/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-replaykit')
-  	```
-
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNReactNativeReplaykit.sln` in `node_modules/react-native-replaykit/windows/RNReactNativeReplaykit.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using React.Native.Replaykit.RNReactNativeReplaykit;` to the usings at the top of the file
-  - Add `new RNReactNativeReplaykitPackage()` to the `List<IReactPackage>` returned by the `Packages` method
+Create a swift file in your main project (if anyone knows a better way to get the auto generated swift build settings to show up, plese open an issue). If you delete this swift file or bridging header, the build settings needed will go away and build fail. 'Objecttive-C Generated Interface Header Name'. 
 
 
 ## Usage

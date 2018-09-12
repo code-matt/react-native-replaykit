@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52ECF4762146088800301CC6 /* ScreenRecordBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF4752146088800301CC6 /* ScreenRecordBridge.m */; };
+		52ECF58021487E1500301CC6 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF57F21487E1500301CC6 /* FileUtil.swift */; };
+		52ECF5852148A73500301CC6 /* ScreenRecordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF5842148A73500301CC6 /* ScreenRecordCoordinator.swift */; };
+		52ECF5872148A74600301CC6 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF5862148A74600301CC6 /* ScreenRecorder.swift */; };
+		52ECF5892148A75700301CC6 /* WindowUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF5882148A75700301CC6 /* WindowUtil.swift */; };
 		B3E7B58A1CC2AC0600A0062D /* RNReactNativeReplaykit.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNReactNativeReplaykit.m */; };
 /* End PBXBuildFile section */
 
@@ -25,9 +28,11 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNReactNativeReplaykit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNReactNativeReplaykit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		52ECF4742146084400301CC6 /* ScreenRecord */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ScreenRecord; sourceTree = "<group>"; };
-		52ECF4752146088800301CC6 /* ScreenRecordBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenRecordBridge.m; sourceTree = "<group>"; };
-		52ECF4772146089A00301CC6 /* ScreenRecordBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenRecordBridge.h; sourceTree = "<group>"; };
+		52ECF57E21487E1400301CC6 /* RNReactNativeReplaykit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNReactNativeReplaykit-Bridging-Header.h"; sourceTree = "<group>"; };
+		52ECF57F21487E1500301CC6 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		52ECF5842148A73500301CC6 /* ScreenRecordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecordCoordinator.swift; sourceTree = "<group>"; };
+		52ECF5862148A74600301CC6 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
+		52ECF5882148A75700301CC6 /* WindowUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowUtil.swift; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNReactNativeReplaykit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReactNativeReplaykit.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNReactNativeReplaykit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReactNativeReplaykit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,12 +59,14 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				52ECF4772146089A00301CC6 /* ScreenRecordBridge.h */,
-				52ECF4752146088800301CC6 /* ScreenRecordBridge.m */,
-				52ECF4742146084400301CC6 /* ScreenRecord */,
+				52ECF5882148A75700301CC6 /* WindowUtil.swift */,
+				52ECF5862148A74600301CC6 /* ScreenRecorder.swift */,
+				52ECF5842148A73500301CC6 /* ScreenRecordCoordinator.swift */,
+				52ECF57F21487E1500301CC6 /* FileUtil.swift */,
 				B3E7B5881CC2AC0600A0062D /* RNReactNativeReplaykit.h */,
 				B3E7B5891CC2AC0600A0062D /* RNReactNativeReplaykit.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				52ECF57E21487E1400301CC6 /* RNReactNativeReplaykit-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +101,7 @@
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -120,7 +128,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E7B58A1CC2AC0600A0062D /* RNReactNativeReplaykit.m in Sources */,
-				52ECF4762146088800301CC6 /* ScreenRecordBridge.m in Sources */,
+				52ECF5872148A74600301CC6 /* ScreenRecorder.swift in Sources */,
+				52ECF5892148A75700301CC6 /* WindowUtil.swift in Sources */,
+				52ECF58021487E1500301CC6 /* FileUtil.swift in Sources */,
+				52ECF5852148A73500301CC6 /* ScreenRecordCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +158,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -167,7 +179,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = RNReactNativeReplaykit;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNReactNativeReplaykit-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 			};
 			name = Debug;
 		};
@@ -191,6 +206,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -203,7 +219,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = RNReactNativeReplaykit;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNReactNativeReplaykit-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -211,32 +230,47 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNReactNativeReplaykit;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNReactNativeReplaykit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RNReactNativeReplaykit;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNReactNativeReplaykit-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
