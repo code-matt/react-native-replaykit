@@ -42,12 +42,16 @@ import Foundation
         return filePath
     }
     
-    class func fetchAllReplays() -> Array<URL>
+    class func fetchAllReplays() -> Array<String>
     {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let replayPath = documentsDirectory?.appendingPathComponent("/Replays")
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: replayPath!, includingPropertiesForKeys: nil, options: [])
-        return directoryContents
+        let urls = directoryContents.map({
+            (url: URL) -> String in
+            return url.absoluteString
+        })
+        return urls
     }
 }
 

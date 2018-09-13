@@ -6,6 +6,7 @@
 #endif
 
 #import <ReplayKit/ReplayKit.h>
+#import "RNReactNativeReplaykit-Swift.h"
 //#import "RNReactNativeReplaykit-Swift.h"
 //@class ReplayFileUtil;
 
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) AVAssetWriter *assetWriter; // TODO
 @property (strong, nonatomic) AVAssetWriterInput *assetWriterInput; // TODO
 @property (strong, nonatomic) RPPreviewViewController *previewViewController;
+@property (strong, nonatomic) ScreenRecordCoordinator *screenRecordCoordinator;
 
 @end
   

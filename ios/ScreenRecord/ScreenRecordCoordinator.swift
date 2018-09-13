@@ -42,7 +42,7 @@ import Foundation
         }
     }
 
-    class func listAllReplays() -> Array<URL>
+    func listAllReplays() -> Array<String>
     {
         return ReplayFileUtil.fetchAllReplays()
     }

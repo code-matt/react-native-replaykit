@@ -18,8 +18,9 @@ import AVKit
 
     let viewOverlay = WindowUtil()
     
-    let mp4: AVFileType = ""
-    let video: AVFileType = ""
+    public func pewpew () {
+        
+    }
 
     //MARK: Screen Recording
     public func startRecording(withFileName fileName: String, recordingHandler:@escaping (Error?)-> Void)
@@ -28,14 +29,14 @@ import AVKit
         {
             let fileURL = URL(fileURLWithPath: ReplayFileUtil.filePath(fileName))
             assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType:
-                mp4 as String)
+                AVFileTypeMPEG4)
             let videoOutputSettings: Dictionary<String, Any> = [
                 AVVideoCodecKey : AVVideoCodecType.h264,
                 AVVideoWidthKey : UIScreen.main.bounds.size.width,
                 AVVideoHeightKey : UIScreen.main.bounds.size.height
             ];
             
-            videoInput  = AVAssetWriterInput (mediaType: video as String, outputSettings: videoOutputSettings)
+            videoInput  = AVAssetWriterInput (mediaType: AVMediaTypeVideo as String, outputSettings: videoOutputSettings)
             videoInput.expectsMediaDataInRealTime = true
             assetWriter.add(videoInput)
             
