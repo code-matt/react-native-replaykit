@@ -55,6 +55,13 @@ RCT_EXPORT_METHOD(stopRecording)
     [self.screenRecordCoordinator stopRecording];
 }
 
+RCT_EXPORT_METHOD(previewRecording:(NSString *)path)
+{
+    [self.screenRecordCoordinator previewRecordingWithFileName:path];
+}
+
+
+
 RCT_EXPORT_MODULE()
 
 @end

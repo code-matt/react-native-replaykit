@@ -4,7 +4,10 @@
 //
 //  Created by Giridhar on 09/06/17.
 //  Copyright © 2017 Giridhar. All rights reserved.
-//
+//  Modified By: [
+//  Matt Thompson 9/2018
+//]
+
 import Foundation
 import ReplayKit
 import AVKit
@@ -17,10 +20,6 @@ import AVKit
     var videoInput:AVAssetWriterInput!
 
     let viewOverlay = WindowUtil()
-    
-    public func pewpew () {
-        
-    }
 
     //MARK: Screen Recording
     public func startRecording(withFileName fileName: String, recordingHandler:@escaping (Error?)-> Void)
@@ -88,7 +87,7 @@ import AVKit
                         {
                             print(ReplayFileUtil.fetchAllReplays())
                             
-                    }
+                        }
             }
         } else {
             // Fallback on earlier versions

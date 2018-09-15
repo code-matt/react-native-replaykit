@@ -4,7 +4,9 @@
 //
 //  Created by Giridhar on 20/06/17.
 //  Copyright © 2017 Giridhar. All rights reserved.
-//
+//  Modified By: [
+//  Matt Thompson 9/2018
+//]
 
 
 import Foundation
@@ -32,6 +34,26 @@ import Foundation
             }
         }
     }
+    
+    class func replaceItem(at dstURL: URL, with srcURL: URL) {
+        do {
+            try FileManager.default.removeItem(at: dstURL)
+            self.copyItem(at: srcURL, to: dstURL)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    class func copyItem(at srcURL: URL, to dstURL: URL) {
+        do {
+            try FileManager.default.copyItem(at: srcURL, to: dstURL)
+        } catch let error as NSError {
+            if error.code == NSFileWriteFileExistsError {
+                print("File exists. Trying to replace")
+                self.replaceItem(at: dstURL, with: srcURL)
+            }
+        }
+    }
 
     class func filePath(_ fileName: String) -> String
     {
@@ -49,7 +71,7 @@ import Foundation
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: replayPath!, includingPropertiesForKeys: nil, options: [])
         let urls = directoryContents.map({
             (url: URL) -> String in
-            return url.absoluteString
+            return url.relativePath
         })
         return urls
     }
