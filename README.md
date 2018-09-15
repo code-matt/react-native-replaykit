@@ -16,7 +16,7 @@ import RNRK from 'react-native-replaykit'
 
 RNRK.startRecording() // starts the recording
 
-RNRK.stopRecording() // stops the recording and opens the preview/edit modal <- same as tapping top blue stop bar
+RNRK.stopRecording() // stops the recording and saves it <- Same as pressing Stop in blue bar up top
 
 RKRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
 
