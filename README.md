@@ -55,7 +55,7 @@ If you find a bug or would like to request a new feature, open an issue.
 Your contributions are always welcome! Fork the project and Submit a pull request.
 
 ## TODO
-* Utility for Editing multiple saved clips into one
+* Utility for editing multiple saved clips into one and being able to sort them however desired and preview that result.
 * Utilities for ReplayKit's Broadcasting ability
 
   
