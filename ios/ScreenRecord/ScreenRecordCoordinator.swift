@@ -46,6 +46,16 @@ import AVKit
         }
     }
     
+    func removeRecording(withFilePath fileURL: String)
+    {
+        ReplayFileUtil.deleteItem(at: URL(fileURLWithPath: fileURL))
+    }
+    
+    func copyRecording(withFilePath fileURL: String, destFileURL: String)
+    {
+        ReplayFileUtil.copyItem(at: URL(fileURLWithPath: fileURL), to: URL(fileURLWithPath: destFileURL))
+    }
+    
     func previewRecording (withFileName fileURL: String) {
         if UIVideoEditorController.canEditVideo(atPath: fileURL) {
             previewDelegateView.setCoordinator(coordinator: self)

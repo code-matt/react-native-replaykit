@@ -54,6 +54,14 @@ import Foundation
             }
         }
     }
+    
+    class func deleteItem(at url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch let error as NSError {
+            print("Error deleting file!")
+        }
+    }
 
     class func filePath(_ fileName: String) -> String
     {

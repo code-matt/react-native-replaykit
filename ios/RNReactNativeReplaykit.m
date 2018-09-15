@@ -44,6 +44,30 @@ RCT_EXPORT_METHOD(startRecording:(RCTResponseSenderBlock)callback)
      }];
 }
 
+RCT_EXPORT_METHOD(deleteRecording:(NSString *)path callback:(RCTResponseSenderBlock)callback)
+{
+    [self.screenRecordCoordinator removeRecordingWithFilePath:path];
+    callback(@[path]);
+}
+
+RCT_EXPORT_METHOD(copyRecording:(NSString *)path callback:(RCTResponseSenderBlock)callback)
+{
+    static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: 15];
+    for (int i=0; i<15; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+    }
+    
+    NSString *newPath = [[NSString stringWithFormat:@"%@/%@",
+                          [path stringByDeletingLastPathComponent], letters]
+                         stringByAppendingPathExtension:[path pathExtension]];
+    
+    [self.screenRecordCoordinator copyRecordingWithFilePath:path destFileURL:newPath];
+    NSArray *recordings = [self.screenRecordCoordinator listAllReplays];
+    
+    callback(@[recordings, newPath]);
+}
+
 RCT_EXPORT_METHOD(getRecordings:(RCTResponseSenderBlock)callback)
 {
     NSArray *recordings = [self.screenRecordCoordinator listAllReplays];
