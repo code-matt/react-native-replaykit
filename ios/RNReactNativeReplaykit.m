@@ -47,7 +47,8 @@ RCT_EXPORT_METHOD(startRecording:(RCTResponseSenderBlock)callback)
 RCT_EXPORT_METHOD(deleteRecording:(NSString *)path callback:(RCTResponseSenderBlock)callback)
 {
     [self.screenRecordCoordinator removeRecordingWithFilePath:path];
-    callback(@[path]);
+    NSArray *recordings = [self.screenRecordCoordinator listAllReplays];
+    callback(@[recordings, path]);
 }
 
 RCT_EXPORT_METHOD(copyRecording:(NSString *)path callback:(RCTResponseSenderBlock)callback)
