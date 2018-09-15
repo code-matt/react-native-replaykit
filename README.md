@@ -14,7 +14,13 @@
 ```
 import RNRK from 'react-native-replaykit'
 
+RNRK.startRecording() // starts the recording
+
+RNRK.stopRecording() // stops the recording and opens the preview/edit modal <- same as tapping top blue stop bar
+
 RKRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
+
+RNRK.previewRecording(path) // open a recording for trimming in the native editor.. save will replace the file, cancel just dismiss the editor.
 
 ```
 
