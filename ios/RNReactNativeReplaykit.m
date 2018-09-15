@@ -13,7 +13,7 @@
     return dispatch_get_main_queue();
 }
 
-RCT_EXPORT_METHOD(initt)
+RCT_EXPORT_METHOD(initialize)
 {
     self.screenRecordCoordinator = [[ScreenRecordCoordinator alloc] init];
 }

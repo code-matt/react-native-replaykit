@@ -29,6 +29,8 @@ Create a swift file in your main project (if anyone knows a better way to get th
 ```
 import RNRK from 'react-native-replaykit'
 
+RNRK.initialize() // you need to call this before using RNRK and only once during app's life.
+
 RNRK.startRecording() // starts the recording
 
 RNRK.stopRecording() // stops the recording and saves it <- Same as pressing Stop in blue bar up top
