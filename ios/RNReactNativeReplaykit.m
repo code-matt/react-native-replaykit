@@ -30,16 +30,18 @@ RCT_EXPORT_METHOD(startRecording:(RCTResponseSenderBlock)callback)
     [self.screenRecordCoordinator
      startRecordingWithFileName:randomString
      recordingHandler:^(NSError *error) {
-         
          if(error)
          {
-             
+             callback(@[[NSNull null], error.localizedDescription]);
          }
      }
      onCompletion:^(NSError *error) {
-         
          if(error)
          {
+             callback(@[[NSNull null], error.localizedDescription]);
+         } else {
+             NSArray *recordings = [self.screenRecordCoordinator listAllReplays];
+             callback(@[recordings, [NSNull null]]);
          }
      }];
 }
@@ -75,9 +77,12 @@ RCT_EXPORT_METHOD(getRecordings:(RCTResponseSenderBlock)callback)
     callback(@[recordings]);
 }
 
-RCT_EXPORT_METHOD(stopRecording)
+RCT_EXPORT_METHOD(stopRecording:(RCTResponseSenderBlock)callback)
 {
     [self.screenRecordCoordinator stopRecording];
+    NSArray *recordings = [self.screenRecordCoordinator listAllReplays];
+    callback(@[recordings]);
+    
 }
 
 RCT_EXPORT_METHOD(previewRecording:(NSString *)path)
