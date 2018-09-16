@@ -31,9 +31,9 @@ import RNRK from 'react-native-replaykit'
 
 RNRK.initialize() // you need to call this before using RNRK and only once during app's life.
 
-RNRK.startRecording() // starts the recording
+RNRK.startRecording((recordings, error) => console.log(recordings)) // starts the recording
 
-RNRK.stopRecording() // stops the recording and saves it <- Same as pressing Stop in blue bar up top
+RNRK.stopRecording(recordings => console.log(recordings)) // stops the recording and saves it <- Same as pressing Stop in blue bar up top
 
 RKRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
 
