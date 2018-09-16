@@ -62,7 +62,7 @@ RCT_EXPORT_METHOD(copyRecording:(NSString *)path callback:(RCTResponseSenderBloc
     }
     
     NSString *newPath = [[NSString stringWithFormat:@"%@/%@",
-                          [path stringByDeletingLastPathComponent], letters]
+                          [path stringByDeletingLastPathComponent], randomString]
                          stringByAppendingPathExtension:[path pathExtension]];
     
     [self.screenRecordCoordinator copyRecordingWithFilePath:path destFileURL:newPath];
