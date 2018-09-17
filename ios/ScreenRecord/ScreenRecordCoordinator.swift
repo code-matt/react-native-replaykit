@@ -1,11 +1,7 @@
-//
-//  ScreenRecordCoordinator.swift
-//  BugReporterTest
-//
 //  Created by Giridhar on 21/06/17.
-//  Copyright © 2017 Giridhar. All rights reserved.
+//  MIT Licence.
 //  Modified By: [
-//  Matt Thompson 9/2018
+//  Matt Thompson 9/14/18
 //]
 
 import Foundation
@@ -115,29 +111,3 @@ extension UIApplication {
         return base
     }
 }
-
-
-//extension FileManager {
-//    func replaceWithCopyOfFile(at:URL, with:URL) {
-//        do {
-//            let url = try self.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: with.deletingPathExtension(), create: true)
-//            try self.copyItem(at: with, to: url.appendingPathComponent(with.lastPathComponent))
-//
-//            let alert = NSAlert()
-//            alert.messageText = "Replace \"\(at.lastPathComponent)\" in \"\(at.pathComponents[at.pathComponents.count - 2])\" with new file?"
-//            alert.addButton(withTitle: "OK")
-//            alert.addButton(withTitle: "Cancel")
-//
-//            if alert.runModal() == NSAlertFirstButtonReturn {
-//                _ = try FileManager.default.replaceItemAt(at, withItemAt: url.appendingPathComponent(with.lastPathComponent))
-//            }
-//
-//            // removes whole temporary directory as a clean up
-//            try self.removeItem(at: url)
-//        }
-//        catch {
-//            // error
-//            print("unknown error")
-//        }
-//    }
-//}

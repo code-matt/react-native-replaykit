@@ -1,3 +1,5 @@
+//  Created by Matt Thompson on 9/14/18.
+//  MIT Licence.
 
 #if __has_include("RCTBridgeModule.h")
 #import "RCTBridgeModule.h"

@@ -1,7 +1,8 @@
+//  Created by Matt Thompson on 9/14/18.
+//  MIT Licence.
 
 #import "RNReactNativeReplaykit.h"
 #import <React/RCTLog.h>
-//#import <AVAssetWriter>
 
 #import "RNReactNativeReplaykit-Swift.h"
 

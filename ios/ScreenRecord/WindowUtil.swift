@@ -1,11 +1,7 @@
-//
-//  WindowUtil.swift
-//  BugReporterTest
-//
 //  Created by Giridhar on 21/06/17.
-//  Copyright © 2017 Giridhar. All rights reserved.
+//  MIT Licence.
 //  Modified By: [
-//  Matt Thompson 9/2018
+//  Matt Thompson 9/14/18
 //]
 
 import Foundation
@@ -78,6 +74,7 @@ class WindowUtil: Overlayable
     func show()
     {
         DispatchQueue.main.async {
+            self.stopButton.isHidden = false
             self.stopButton.transform = CGAffineTransform(translationX: 0, y: -30)
             self.stopButton.backgroundColor = self.stopButtonColor
             self.overlayWindow.makeKeyAndVisible()

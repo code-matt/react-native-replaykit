@@ -1,11 +1,7 @@
-//
-//  ScreenRecorder.swift
-//  BugReporterTest
-//
 //  Created by Giridhar on 09/06/17.
-//  Copyright © 2017 Giridhar. All rights reserved.
+//  MIT Licence.
 //  Modified By: [
-//  Matt Thompson 9/2018
+//  Matt Thompson 9/14/18
 //]
 
 import Foundation
