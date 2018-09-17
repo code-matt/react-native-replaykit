@@ -1,6 +1,6 @@
 {
   "name": "react-native-replaykit",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A React Native module to access ReplayKit Screen Recording Framework on iOS",
   "main": "index.js",
   "license" : "MIT",
