@@ -1,4 +1,4 @@
-### MIT Licence (See Licences folder)
+### MIT Licence
 
 # react-native-replaykit
 
