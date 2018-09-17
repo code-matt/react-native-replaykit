@@ -35,7 +35,7 @@ RNRK.startRecording((recordings, error) => console.log(recordings)) // starts th
 
 RNRK.stopRecording(recordings => console.log(recordings)) // stops the recording and saves it <- Same as pressing Stop in blue bar up top
 
-RKRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
+RNRK.getRecordings(recordings => console.log(recordings)) get all recordings stored in the app's Documents/Replays folder.
 
 RNRK.previewRecording(path) // open a recording for trimming in the native editor.. save will replace the file, cancel just dismiss the editor.
 
@@ -46,7 +46,7 @@ RNRK.copyRecording(recordingPath, (recordings, copyPath) => {
 
 RNRK.deleteRecording(recordingPath, (recordings, deletedPath) => {
   console.log(recordings) // the array of all your recordings
-  console.log(deletedPath) // the new path of the recording just deleted
+  console.log(deletedPath) // the path of the recording just deleted
 })
 ```
 
