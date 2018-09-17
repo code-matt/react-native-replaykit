@@ -1,7 +1,6 @@
 ### MIT Licence (See Licences folder)
 
 # react-native-replaykit
-### work in progress, breaking changes inbound - WIP
 
 ## Getting started
 
