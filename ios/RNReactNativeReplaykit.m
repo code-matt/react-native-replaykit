@@ -17,11 +17,11 @@
 RCT_EXPORT_METHOD(initialize)
 {
     self.screenRecordCoordinator = [[ScreenRecordCoordinator alloc] init];
+    [ReplayFileUtil createReplaysFolder];
 }
 
 RCT_EXPORT_METHOD(startRecording:(RCTResponseSenderBlock)callback)
 {
-    [ReplayFileUtil createReplaysFolder];
     static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     NSMutableString *randomString = [NSMutableString stringWithCapacity: 15];
     for (int i=0; i<15; i++) {

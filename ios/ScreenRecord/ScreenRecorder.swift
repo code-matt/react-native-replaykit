@@ -34,7 +34,7 @@ import AVKit
             videoInput  = AVAssetWriterInput (mediaType: AVMediaTypeVideo as String, outputSettings: videoOutputSettings)
             videoInput.expectsMediaDataInRealTime = true
             assetWriter.add(videoInput)
-            
+//            RPScreenRecorder.shared().
             RPScreenRecorder.shared().startCapture(handler: { (sample, bufferType, error) in
                 //                print(sample,bufferType,error)
                 

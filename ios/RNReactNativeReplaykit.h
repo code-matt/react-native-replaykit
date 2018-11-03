@@ -14,8 +14,6 @@
 @interface RNReactNativeReplaykit : NSObject <RCTBridgeModule>
 
 @property (strong, nonatomic) RPScreenRecorder *screenRecorder;
-@property (strong, nonatomic) AVAssetWriter *assetWriter; // TODO
-@property (strong, nonatomic) AVAssetWriterInput *assetWriterInput; // TODO
 @property (strong, nonatomic) RPPreviewViewController *previewViewController;
 @property (strong, nonatomic) ScreenRecordCoordinator *screenRecordCoordinator;
 
