@@ -27,7 +27,7 @@ import AVKit
 
     func startRecording(withFileName fileName: String, recordingHandler: @escaping (Error?) -> Void,onCompletion: @escaping (Error?)->Void)
     {
-        self.viewOverlay.show()
+//        self.viewOverlay.show()
         screenRecorder.startRecording(withFileName: fileName) { (error) in
             recordingHandler(error)
             self.recordCompleted = onCompletion
@@ -37,7 +37,7 @@ import AVKit
     func stopRecording()
     {
         screenRecorder.stopRecording { (error) in
-            self.viewOverlay.hide()
+//            self.viewOverlay.hide()
             self.recordCompleted?(error)
         }
     }
