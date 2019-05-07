@@ -22,14 +22,13 @@ RCT_EXPORT_METHOD(initialize)
 
 RCT_EXPORT_METHOD(startRecording:(RCTResponseSenderBlock)callback)
 {
-    static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    NSMutableString *randomString = [NSMutableString stringWithCapacity: 15];
-    for (int i=0; i<15; i++) {
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
-    }
+    NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970];
+    NSNumber *timeStampObj = [NSNumber numberWithInteger: [[NSNumber numberWithDouble: timeStamp] integerValue] ];
+    NSMutableString *fileName = [[NSMutableString alloc] initWithString:@"Recording-"];
+    [fileName appendString: [timeStampObj stringValue]];
 
     [self.screenRecordCoordinator
-     startRecordingWithFileName:randomString
+     startRecordingWithFileName:fileName
      recordingHandler:^(NSError *error) {
          if(error)
          {
