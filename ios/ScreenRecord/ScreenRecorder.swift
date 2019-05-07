@@ -24,14 +24,14 @@ import AVKit
         {
             let fileURL = URL(fileURLWithPath: ReplayFileUtil.filePath(fileName))
             assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType:
-                AVFileTypeMPEG4)
+                AVFileType.mp4)
             let videoOutputSettings: Dictionary<String, Any> = [
                 AVVideoCodecKey : AVVideoCodecType.h264,
                 AVVideoWidthKey : UIScreen.main.bounds.size.width,
                 AVVideoHeightKey : UIScreen.main.bounds.size.height
             ];
             
-            videoInput  = AVAssetWriterInput (mediaType: AVMediaTypeVideo as String, outputSettings: videoOutputSettings)
+            videoInput  = AVAssetWriterInput (mediaType: AVMediaType.video, outputSettings: videoOutputSettings)
             videoInput.expectsMediaDataInRealTime = true
             assetWriter.add(videoInput)
 //            RPScreenRecorder.shared().
@@ -42,13 +42,13 @@ import AVKit
                 
                 if CMSampleBufferDataIsReady(sample)
                 {
-                    if self.assetWriter.status == AVAssetWriterStatus.unknown
+                    if self.assetWriter.status == AVAssetWriter.Status.unknown
                     {
                         self.assetWriter.startWriting()
                         self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sample))
                     }
                     
-                    if self.assetWriter.status == AVAssetWriterStatus.failed {
+                    if self.assetWriter.status == AVAssetWriter.Status.failed {
                         print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
                         return
                     }
