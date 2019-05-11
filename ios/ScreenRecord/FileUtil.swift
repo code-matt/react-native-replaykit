@@ -76,8 +76,8 @@ import Foundation
         let urls = directoryContents.map({
             (url: URL) -> String in
             return url.relativePath
-        })
-        return urls
+        }).sorted(by: >);
+        return urls;
     }
 }
 
