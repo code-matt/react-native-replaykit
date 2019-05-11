@@ -28,7 +28,9 @@ Create a swift file in your main project (if anyone knows a better way to get th
 ```
 import RNRK from 'react-native-replaykit'
 
-RNRK.initialize() // you need to call this before using RNRK and only once during app's life.
+RNRK.initialize({
+  showOverlay: true // you must pass true or false for this option. It determines if a blue overlay will show up at the top of the screen that will indicate recording but not show up in the actual screen recording.
+}) // you need to call this before using RNRK and only once during app's life.
 
 RNRK.startRecording((recordings, error) => console.log(recordings)) // starts the recording. The callback is fired when the recording is completed.
 
