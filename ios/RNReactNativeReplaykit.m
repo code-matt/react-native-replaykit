@@ -3,6 +3,7 @@
 
 #import "RNReactNativeReplaykit.h"
 #import <React/RCTLog.h>
+#import <React/RCTConvert.h>
 
 #import "RNReactNativeReplaykit-Swift.h"
 
@@ -14,9 +15,10 @@
     return dispatch_get_main_queue();
 }
 
-RCT_EXPORT_METHOD(initialize)
+RCT_EXPORT_METHOD(initialize: (NSDictionary *)config)
 {
-    self.screenRecordCoordinator = [[ScreenRecordCoordinator alloc] init];
+    BOOL showOverlay = [RCTConvert BOOL: config[@"showOverlay"]];
+    self.screenRecordCoordinator = [[ScreenRecordCoordinator alloc] initWithShowOverlay:showOverlay];
     [ReplayFileUtil createReplaysFolder];
 }
 

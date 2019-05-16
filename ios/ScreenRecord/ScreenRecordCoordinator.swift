@@ -13,21 +13,23 @@ import AVKit
     let screenRecorder = ScreenRecorder()
     var recordCompleted:((Error?) ->Void)?
     let previewDelegateView = PreviewDelegateView()
+    var showOverlay: Bool?
 
-    override init()
+    init(showOverlay: Bool)
     {
         super.init()
+        self.showOverlay = showOverlay
         
         viewOverlay.onStopClick = {
             self.stopRecording()
         }
-        
-        
     }
 
     func startRecording(withFileName fileName: String, recordingHandler: @escaping (Error?) -> Void,onCompletion: @escaping (Error?)->Void)
     {
-//        self.viewOverlay.show()
+        if (self.showOverlay!) {
+            self.viewOverlay.show()
+        }
         screenRecorder.startRecording(withFileName: fileName) { (error) in
             recordingHandler(error)
             self.recordCompleted = onCompletion
@@ -37,7 +39,9 @@ import AVKit
     func stopRecording()
     {
         screenRecorder.stopRecording { (error) in
-//            self.viewOverlay.hide()
+            if (self.showOverlay!) {
+                self.viewOverlay.hide()
+            }
             self.recordCompleted?(error)
         }
     }

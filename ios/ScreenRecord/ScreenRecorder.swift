@@ -76,14 +76,10 @@ import AVKit
     {
         if #available(iOS 11.0, *)
         {
-            RPScreenRecorder.shared().stopCapture
-                {    (error) in
-                    handler(error)
-                    self.assetWriter.finishWriting
-                        {
-                            print(ReplayFileUtil.fetchAllReplays())
-                            
-                        }
+            RPScreenRecorder.shared().stopCapture { (Error) in
+                self.assetWriter.finishWriting {
+                    print(ReplayFileUtil.fetchAllReplays())
+                }
             }
         } else {
             // Fallback on earlier versions
