@@ -38,10 +38,10 @@ import AVKit
 
     func stopRecording()
     {
+        if (self.showOverlay!) {
+            self.viewOverlay.hide()
+        }
         screenRecorder.stopRecording { (error) in
-            if (self.showOverlay!) {
-                self.viewOverlay.hide()
-            }
             self.recordCompleted?(error)
         }
     }
