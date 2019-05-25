@@ -31,22 +31,22 @@ export default class HomeScreen extends React.Component {
     this.setState({ recordings: this.ds.cloneWithRows(recordings) })
   }
 
-	doRecord = () => {
-		console.log("Start pressed");
-		RNRK.startRecording((recordings, error) => {
+  doRecord = () => {
+    console.log("Start pressed");
+    RNRK.startRecording((recordings, error) => {
       console.log(error)
       console.log(recordings)
       console.log("Start Recording Finished");
     });
-	}
+  }
 
-	stopRecord = () => {
-		RNRK.stopRecording(recordings => {
+  stopRecord = () => {
+    RNRK.stopRecording(recordings => {
       console.log("Stop recording finished, number of recordings: ", recordings.length);
       console.log(recordings)
       this.updateRecordings(recordings)
     });
-		console.log("Stop pressed");
+    console.log("Stop pressed");
   }
 
   renderRecordingListItem = (data) => {
@@ -89,9 +89,9 @@ export default class HomeScreen extends React.Component {
     )
   }
 
-	render() {
-		return (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <View style={styles.buttonContainer}>
           {this.renderButton('Record', this.doRecord)}
           {this.renderButton('Stop', this.stopRecord)}
@@ -103,9 +103,9 @@ export default class HomeScreen extends React.Component {
           dataSource={this.state.recordings}
           renderRow={(data) => this.renderRecordingListItem(data)}
         />
-			</View>
-		);
-	}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
