@@ -55,7 +55,7 @@ RNRK.deleteRecording(recordingPath, (recordings, deletedPath) => {
 
 ## Contributing
 If you find a bug or would like to request a new feature, open an issue. 
-Your contributions are always welcome! Fork the project and Submit a pull request.
+Your contributions are always welcome! Fork the project and Submit a pull request to the **dev** branch.
 
 ## TODO
 * Thumbnail previews being generated and stored at stopRecording. [Objects] with video path and thumbnail path being returned for recordings
