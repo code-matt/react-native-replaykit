@@ -27,6 +27,7 @@ Create a swift file in your main project (if anyone knows a better way to get th
 
 
 ### Usage
+# !! This module does not work in simulator !!
 **Take a look at testapp/App.js for full example of start, stop, preview, copy and delete**
 ```
 import RNRK from 'react-native-replaykit'
