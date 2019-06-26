@@ -14,7 +14,7 @@ import AVKit
 {
     var assetWriter:AVAssetWriter!
     var videoInput:AVAssetWriterInput!
-
+    var audioInput:AVAssetWriterInput!
     let viewOverlay = WindowUtil()
 
     //MARK: Screen Recording
@@ -31,9 +31,23 @@ import AVKit
                 AVVideoHeightKey : UIScreen.main.bounds.size.height
             ];
             
+            var channelLayout = AudioChannelLayout.init()
+            channelLayout.mChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_1_D
+            let audioOutputSettings: [String : Any] = [
+                AVNumberOfChannelsKey: 6,
+                AVFormatIDKey: kAudioFormatMPEG4AAC_HE,
+                AVSampleRateKey: 44100,
+                AVChannelLayoutKey: NSData(bytes: &channelLayout, length: MemoryLayout.size(ofValue: channelLayout)),
+            ]
+            
             videoInput  = AVAssetWriterInput (mediaType: AVMediaType.video, outputSettings: videoOutputSettings)
+            audioInput  = AVAssetWriterInput(mediaType: AVMediaType.audio,outputSettings: audioOutputSettings)
+            
             videoInput.expectsMediaDataInRealTime = true
+            audioInput.expectsMediaDataInRealTime = true
+            
             assetWriter.add(videoInput)
+            assetWriter.add(audioInput)
 //            RPScreenRecorder.shared().
             RPScreenRecorder.shared().startCapture(handler: { (sample, bufferType, error) in
                 //                print(sample,bufferType,error)
@@ -58,6 +72,15 @@ import AVKit
                         if self.videoInput.isReadyForMoreMediaData
                         {
                             self.videoInput.append(sample)
+                        }
+                    }
+                    
+                    if (bufferType == .audioApp)
+                    {
+                        if self.audioInput.isReadyForMoreMediaData
+                        {
+                            //print("Audio Buffer Came")
+                            self.audioInput.append(sample)
                         }
                     }
                 }
