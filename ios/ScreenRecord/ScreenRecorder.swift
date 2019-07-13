@@ -8,9 +8,9 @@ import Foundation
 import ReplayKit
 import AVKit
 
+@objcMembers
 
-
-@objc class ScreenRecorder:NSObject
+class ScreenRecorder:NSObject
 {
     var assetWriter:AVAssetWriter!
     var videoInput:AVAssetWriterInput!
@@ -47,6 +47,7 @@ import AVKit
             
             assetWriter.add(videoInput)
             assetWriter.add(audioInput)
+            RPScreenRecorder.shared().isMicrophoneEnabled = true;
             RPScreenRecorder.shared().startCapture(handler: { (sample, bufferType, error) in
                 
                 recordingHandler(error)
@@ -73,6 +74,14 @@ import AVKit
                     }
                     
                     if (bufferType == .audioApp)
+                    {
+                        if self.audioInput.isReadyForMoreMediaData
+                        {
+                            self.audioInput.append(sample)
+                        }
+                    }
+                    
+                    if (bufferType == .audioMic)
                     {
                         if self.audioInput.isReadyForMoreMediaData
                         {

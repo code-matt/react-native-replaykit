@@ -7,7 +7,9 @@
 import Foundation
 import AVKit
 
-@objc class ScreenRecordCoordinator: NSObject
+@objcMembers
+
+class ScreenRecordCoordinator: NSObject
 {
     let viewOverlay = WindowUtil()
     let screenRecorder = ScreenRecorder()
@@ -69,7 +71,7 @@ import AVKit
         }
     }
 
-    func listAllReplays() -> Array<String>
+    @objc func listAllReplays() -> Array<String>
     {
         return ReplayFileUtil.fetchAllReplays()
     }
