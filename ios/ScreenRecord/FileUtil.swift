@@ -7,7 +7,9 @@
 
 import Foundation
 
-@objc public class ReplayFileUtil:NSObject
+@objcMembers
+
+public class ReplayFileUtil:NSObject
 {
     class func createReplaysFolder()
     {
