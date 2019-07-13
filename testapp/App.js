@@ -5,7 +5,7 @@ import React from 'react'
 import Sound from 'react-native-sound'
 
 RNRK.initialize({
-  showOverlay: true
+  showOverlay: false
 });
 
 const audioTests = [
@@ -116,7 +116,9 @@ export default class HomeScreen extends React.Component {
     RNRK.stopRecording(recordings => {
       console.log("Stop recording finished, number of recordings: ", recordings.length);
       console.log(recordings)
-      this.updateRecordings(recordings)
+      setTimeout(() => {
+        this.updateRecordings(recordings)
+      }, 1000)
     });
     console.log("Stop pressed");
   }
