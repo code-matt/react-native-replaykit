@@ -1,11 +1,79 @@
 
-import { StyleSheet, Text, View, TouchableOpacity, ListView } from 'react-native';
-import RNRK from 'react-native-replaykit';
+import { StyleSheet, Text, View, TouchableOpacity, ListView, ScrollView, Alert } from 'react-native'
+import RNRK from 'react-native-replaykit'
 import React from 'react'
+import Sound from 'react-native-sound'
 
 RNRK.initialize({
   showOverlay: true
 });
+
+const audioTests = [
+  {
+    title: 'mp3 in bundle',
+    url: 'advertising.mp3',
+    basePath: Sound.MAIN_BUNDLE,
+  }
+]
+
+const Header = ({children, style}) => <Text style={[styles.header, style]}>{children}</Text>;
+
+const Feature = ({title, onPress, description, buttonLabel = 'PLAY', status}) => (
+  <View style={styles.feature}>
+    <Header style={{flex: 1}}>{title}</Header>
+    {status ? <Text style={{padding: 5}}>{resultIcons[status] || ''}</Text> : null}
+    <Button title={buttonLabel} onPress={onPress} />
+  </View>
+);
+
+const resultIcons = {
+  '': '',
+  pending: '?',
+  playing: '\u25B6',
+  win: '\u2713',
+  fail: '\u274C',
+};
+
+/**
+ * Generic play function for majority of tests
+ */
+function playSound(testInfo, component) {
+  setTestState(testInfo, component, 'pending');
+
+  const callback = (error, sound) => {
+    if (error) {
+      Alert.alert('error', error.message);
+      setTestState(testInfo, component, 'fail');
+      return;
+    }
+    setTestState(testInfo, component, 'playing');
+    // Run optional pre-play callback
+    testInfo.onPrepared && testInfo.onPrepared(sound, component);
+    sound.play(() => {
+      // Success counts as getting to the end
+      setTestState(testInfo, component, 'win');
+      // Release when it's done so we're not using up resources
+      sound.release();
+    });
+  };
+
+  // If the audio is a 'require' then the second parameter must be the callback.
+  if (testInfo.isRequire) {
+    const sound = new Sound(testInfo.url, error => callback(error, sound));
+  } else {
+    const sound = new Sound(testInfo.url, testInfo.basePath, error => callback(error, sound));
+  }
+}
+
+const Button = ({title, onPress}) => (
+  <TouchableOpacity onPress={onPress}>
+    <Text style={styles.button}>{title}</Text>
+  </TouchableOpacity>
+);
+
+function setTestState(testInfo, component, status) {
+  component.setState({tests: {...component.state.tests, [testInfo.title]: status}});
+}
 
 export default class HomeScreen extends React.Component {
 
@@ -15,9 +83,13 @@ export default class HomeScreen extends React.Component {
 
   constructor (props) {
     super(props)
+    console.disableYellowBox = true
+    Sound.setCategory('Playback', true)
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
     this.state = {
-      recordings: this.ds.cloneWithRows([])
+      recordings: this.ds.cloneWithRows([]),
+      loopingSound: undefined,
+      tests: {},
     };
   }
 
@@ -48,6 +120,15 @@ export default class HomeScreen extends React.Component {
     });
     console.log("Stop pressed");
   }
+
+  stopSoundLooped = () => {
+    if (!this.state.loopingSound) {
+      return;
+    }
+
+    this.state.loopingSound.stop().release();
+    this.setState({loopingSound: null, tests: {...this.state.tests, ['mp3 in bundle (looped)']: 'win'}});
+  };
 
   renderRecordingListItem = (data) => {
     return (
@@ -97,6 +178,19 @@ export default class HomeScreen extends React.Component {
           {this.renderButton('Stop', this.stopRecord)}
         </View>
 
+        {audioTests.map(testInfo => {
+            return (
+              <Feature
+                status={this.state.tests[testInfo.title]}
+                key={testInfo.title}
+                title={testInfo.title}
+                onPress={() => {
+                  return playSound(testInfo, this);
+                }}
+              />
+            );
+          })}
+          
         <ListView
           contentContainerStyle={styles.listContainer}
           style={{flex: 1}}
@@ -110,8 +204,6 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   listContainer: {
-    // flex: 1,
-    // justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
     width: '100%'
@@ -137,5 +229,39 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 20
-  }
+  },
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {},
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingTop: 30,
+    padding: 20,
+    textAlign: 'center',
+    backgroundColor: 'rgba(240,240,240,1)',
+  },
+  button: {
+    fontSize: 20,
+    backgroundColor: 'rgba(220,220,220,1)',
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(80,80,80,0.5)',
+    overflow: 'hidden',
+    padding: 7,
+  },
+  header: {
+    textAlign: 'left',
+  },
+  feature: {
+    flexDirection: 'row',
+    padding: 10,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: 'rgb(180,180,180)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgb(230,230,230)',
+  },
 });

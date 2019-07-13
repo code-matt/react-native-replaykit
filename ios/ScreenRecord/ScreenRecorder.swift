@@ -17,7 +17,6 @@ import AVKit
     var audioInput:AVAssetWriterInput!
     let viewOverlay = WindowUtil()
 
-    //MARK: Screen Recording
     public func startRecording(withFileName fileName: String, recordingHandler:@escaping (Error?)-> Void)
     {
         if #available(iOS 11.0, *)
@@ -48,9 +47,7 @@ import AVKit
             
             assetWriter.add(videoInput)
             assetWriter.add(audioInput)
-//            RPScreenRecorder.shared().
             RPScreenRecorder.shared().startCapture(handler: { (sample, bufferType, error) in
-                //                print(sample,bufferType,error)
                 
                 recordingHandler(error)
                 
@@ -79,7 +76,6 @@ import AVKit
                     {
                         if self.audioInput.isReadyForMoreMediaData
                         {
-                            //print("Audio Buffer Came")
                             self.audioInput.append(sample)
                         }
                     }
@@ -87,7 +83,6 @@ import AVKit
                 
             }) { (error) in
                 recordingHandler(error)
-                //                debugPrint(error)
             }
         } else
         {
