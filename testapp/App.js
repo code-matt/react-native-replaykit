@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TouchableOpacity, ListView, ScrollView, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import RNRK from 'react-native-replaykit'
 import React from 'react'
 import Sound from 'react-native-sound'
@@ -85,11 +85,12 @@ export default class HomeScreen extends React.Component {
     super(props)
     console.disableYellowBox = true
     Sound.setCategory('Playback', true)
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
+    // this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
     this.state = {
-      recordings: this.ds.cloneWithRows([]),
+      // recordings: this.ds.cloneWithRows([]),
       loopingSound: undefined,
       tests: {},
+      recordings: []
     };
   }
 
@@ -100,7 +101,7 @@ export default class HomeScreen extends React.Component {
   }
 
   updateRecordings = (recordings) => {
-    this.setState({ recordings: this.ds.cloneWithRows(recordings) })
+    this.setState({ recordings: recordings })
   }
 
   doRecord = () => {
@@ -193,12 +194,17 @@ export default class HomeScreen extends React.Component {
             );
           })}
           
-        <ListView
+        {/* <ListView
           contentContainerStyle={styles.listContainer}
           style={{flex: 1}}
           dataSource={this.state.recordings}
           renderRow={(data) => this.renderRecordingListItem(data)}
-        />
+        /> */}
+        <ScrollView>
+          {this.state.recordings.map((recording) => {
+            return this.renderRecordingListItem(recording)
+          })}
+        </ScrollView>
       </View>
     );
   }
