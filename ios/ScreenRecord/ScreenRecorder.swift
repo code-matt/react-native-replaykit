@@ -18,6 +18,7 @@ class ScreenRecorder:NSObject
     var audioInput:AVAssetWriterInput!
     var micInput:AVAssetWriterInput!
     let viewOverlay = WindowUtil()
+    var sessionStarted = false
     
     public func startRecording(withFileName fileName: String, recordingHandler:@escaping (Error?)-> Void)
     {
@@ -76,12 +77,13 @@ class ScreenRecorder:NSObject
                 
                 if CMSampleBufferDataIsReady(sample) && !self.finishCalled
                 {
-                    if self.assetWriter.status == AVAssetWriter.Status.unknown
+                    if self.assetWriter.status == AVAssetWriter.Status.unknown && !self.sessionStarted
                     {
+                        self.sessionStarted = true
                         self.assetWriter.startWriting()
                         self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sample))
                     }
-                    
+
                     if self.assetWriter.status == AVAssetWriter.Status.failed {
                         print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
                         return
@@ -129,6 +131,7 @@ class ScreenRecorder:NSObject
             RPScreenRecorder.shared().stopCapture { (Error) in
                 //                self.micInput.markAsFinished()
                 self.assetWriter.finishWriting {
+                    self.sessionStarted = false
                     print(ReplayFileUtil.fetchAllReplays())
                 }
             }
