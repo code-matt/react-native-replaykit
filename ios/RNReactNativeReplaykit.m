@@ -9,6 +9,7 @@
 
 @implementation RNReactNativeReplaykit
 
+RCT_EXPORT_MODULE()
 
 - (dispatch_queue_t)methodQueue
 {
@@ -91,10 +92,6 @@ RCT_EXPORT_METHOD(previewRecording:(NSString *)path)
 {
     [self.screenRecordCoordinator previewRecordingWithFileName:path];
 }
-
-
-
-RCT_EXPORT_MODULE()
 
 @end
   
