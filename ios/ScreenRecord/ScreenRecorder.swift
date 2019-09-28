@@ -129,7 +129,6 @@ class ScreenRecorder:NSObject
         if #available(iOS 11.0, *)
         {
             RPScreenRecorder.shared().stopCapture { (Error) in
-                //                self.micInput.markAsFinished()
                 self.assetWriter.finishWriting {
                     self.sessionStarted = false
                     print(ReplayFileUtil.fetchAllReplays())
