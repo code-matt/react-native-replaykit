@@ -23,7 +23,7 @@
 
 ![](createswiftfile.png)
 
-Create a swift file in your main project (if anyone knows a better way to get the auto generated swift build settings to show up, plese open an issue). If you delete this swift file or bridging header, the build settings needed will go away and build fail. 'Objecttive-C Generated Interface Header Name'. 
+Create a swift file in your main project (if anyone knows a better way to get the auto generated swift build settings to show up, plese open an issue). If you delete this swift file or bridging header, the build settings needed will go away and build fail. 'Objective-C Generated Interface Header Name'. 
 
 
 ### Usage
